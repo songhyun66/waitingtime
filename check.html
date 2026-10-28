@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>연결 점검</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<link rel="stylesheet" href="css/check.css">
+</head>
+<body>
+<div class="wrap">
+  <div class="eyebrow">보건실 대기열</div>
+  <h1>Supabase 연결 점검</h1>
+  <p class="lead">js/config.js에 넣은 값으로 서버, 테이블, 실시간 연결을 차례로 확인해요.</p>
+
+  <ol class="steps" id="steps"></ol>
+
+  <div class="actions">
+    <button class="ghost" id="rerunBtn">다시 점검</button>
+    <button class="primary" id="writeBtn" disabled>쓰기 테스트 실행</button>
+  </div>
+  <p class="note">쓰기 테스트는 "연결 테스트"라는 접수를 하나 넣고 진료 완료로 바꿔 봐요. 이 행은 학생 화면과 교사 화면에는 나타나지 않아요.</p>
+
+  <p class="links"><a href="student.html">학생 화면</a><a href="teacher.html">교사 대시보드</a></p>
+</div>
+
+<script>
+  if (location.protocol === "file:"){
+    document.body.insertAdjacentHTML("afterbegin",
+      '<div class="file-warning">파일을 직접 열면(file://) 동작하지 않아요. README의 "실행하기"를 참고해 http:// 주소로 열어주세요.</div>');
+  }
+</script>
+<script type="module" src="js/check.js"></script>
+</body>
+</html>

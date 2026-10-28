@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<title>보건실 대기현황</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<link rel="stylesheet" href="css/student.css">
+</head>
+<body>
+
+  <div class="app">
+    <div class="eyebrow">보건실 실시간 대기현황</div>
+    <h1 class="school-name">우리학교 보건실</h1>
+
+    <div class="ring-wrap">
+      <div class="ring-pulse"></div>
+      <div class="ring">
+        <div class="label">현재 예상 대기시간</div>
+        <div class="number"><span id="waitNumber">0</span><span>분</span></div>
+        <svg class="ecg" viewBox="0 0 150 28">
+          <path d="M0,14 L34,14 L42,4 L50,24 L58,14 L150,14" />
+        </svg>
+      </div>
+    </div>
+
+    <div class="queue-info">현재 대기 인원 <b id="waitCount">0</b>명</div>
+
+    <button class="cta" id="openBtn">보건실 사용하기</button>
+    <div class="foot-note">학번과 이름을 입력하고 방문 사유를 선택하면 접수가 완료돼요</div>
+
+    <div class="conn-status pending" id="connStatus"><span class="dot"></span><span id="connText">연결 확인 중</span></div>
+  </div>
+
+  <!-- Modal -->
+  <div class="overlay hidden" id="overlay">
+    <div class="modal">
+
+      <!-- Step 1: 학번 -->
+      <div class="step" id="stepStudentId">
+        <h2>학번을 입력해주세요</h2>
+        <p class="sub">숫자 키패드로 학번을 눌러주세요</p>
+        <div class="id-display" id="idDisplay"></div>
+        <div class="error-msg" id="idError">학번은 4자리 이상 입력해주세요</div>
+        <div class="keypad" id="keypad"></div>
+        <div class="modal-actions">
+          <button class="ghost" id="idCancelBtn">취소</button>
+          <button class="primary" id="idNextBtn">완료</button>
+        </div>
+      </div>
+
+      <!-- Step 2: 이름 -->
+      <div class="step hidden" id="stepName">
+        <h2>이름을 입력해주세요</h2>
+        <p class="sub">본인 이름을 정확히 입력해주세요</p>
+        <input type="text" class="name-input" id="nameInput" placeholder="이름 입력" maxlength="10" />
+        <div class="modal-actions">
+          <button class="ghost" id="nameBackBtn">이전</button>
+          <button class="primary" id="nameNextBtn" disabled>완료</button>
+        </div>
+      </div>
+
+      <!-- Step 3: 사유 -->
+      <div class="step hidden" id="stepReason">
+        <h2>이용 사유를 선택해주세요</h2>
+        <p class="sub">사유에 따라 예상 소요시간이 달라요</p>
+        <div class="reasons-grid" id="reasonsGrid"></div>
+        <div class="modal-actions">
+          <button class="ghost" id="reasonBackBtn">이전</button>
+          <button class="primary" id="reasonSubmitBtn" disabled>접수 완료</button>
+        </div>
+      </div>
+
+      <!-- Step 4: 완료 -->
+      <div class="step hidden" id="stepDone">
+        <div class="done-icon">✓</div>
+        <h2>접수가 완료되었습니다</h2>
+        <p id="doneSummary"></p>
+        <div class="modal-actions">
+          <button class="primary" id="doneCloseBtn" style="flex:none; width:100%;">확인</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+<!-- 파일을 더블클릭해서 열면(file://) ES 모듈이 로드되지 않으므로 안내를 띄웁니다 -->
+<script>
+  if (location.protocol === "file:"){
+    document.body.insertAdjacentHTML("afterbegin",
+      '<div class="file-warning">파일을 직접 열면(file://) 동작하지 않아요. README의 "실행하기"를 참고해 http:// 주소로 열어주세요.</div>');
+  }
+</script>
+<script type="module" src="js/student.js"></script>
+</body>
+</html>
